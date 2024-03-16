@@ -5,6 +5,7 @@ function Login() {
     const [password, setPassword] = useState('');
     const [emailFocused, setEmailFocused] = useState(false);
     const [passwordFocused, setPasswordFocused] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const handleFocus = (setState: React.Dispatch<React.SetStateAction<boolean>>) => () => {
         setState(true);
@@ -16,22 +17,25 @@ function Login() {
         }
     };
 
-    const handleSubmit = (event: FormEvent) => {
+    const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
+        setLoading(true);
+        await new Promise((resolve) => setTimeout(resolve, 2000));
         console.log('Email:', email, 'Senha:', password);
+        setLoading(false);
     };
 
     return (
         <div className='w-full h-screen flex flex-row'>
-            <div className='flex flex-col w-4/6 h-full bg-gray-300 items-center justify-center'>
+            <div className='flex-col w-full h-full bg-gray-300 items-center justify-center hidden lg:flex'>
                 <img src="/logo-eric" alt="LOGO DO ERIC" />
-                <div className='w-full max-w-[495px] text-center mt-4'>
+                <div className='w-3/4 text-center mt-4'>
                     Kuritza, Mateus: Sistema desenvolvido da forma mais simples possível para realizarmos as atividades das aulas e obtermos as notas
                 </div>
             </div>
-            <div className='flex items-center justify-center w-1/3 h-full p-4'>
-                <p className='fixed left-2/3 top-0 ml-1 text-[12px] text-SecondTextColor'>Version 1.0</p>
-                <form onSubmit={handleSubmit} className='rounded-md w-full max-w-md'>
+            <div className='flex items-center justify-center w-full h-full px-8'>
+                <p className='fixed right-4 top-2 ml-1 text-[12px] text-SecondTextColor'>Version 1.0</p>
+                <form onSubmit={handleSubmit} className='rounded-md w-full max-w-xl'>
                     <div className='mb-6'>
                         <h2 className='text-white text-2xl font-bold'>Login</h2>
                         <p className='text-SecondTextColor'>Não possui uma conta?<a href='/register' className='font-bold'> Cadastre-se</a></p>
@@ -57,7 +61,7 @@ function Login() {
                             onBlur={handleBlur(setPasswordFocused, password)}
                             focused={passwordFocused} />
                     </div>
-                    <button type="submit" className='text-white bg-black w-full p-3 mt-11 rounded-md font-bold'>Entrar</button>
+                    <button disabled={loading} type="submit" className='text-white bg-black w-full p-3 mt-11 rounded-md font-bold disabled:bg-opacity-70'>{loading ? "Carregando..." : "Entrar"}</button>
                     <p className='text-center text-SecondTextColor mt-3'>Esqueceu a senha? <a className='font-bold '>Acesse</a></p>
                 </form>
             </div>

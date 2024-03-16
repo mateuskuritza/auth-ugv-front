@@ -3,7 +3,7 @@ import {
 } from "react-router-dom";
 import App from "./App";
 import Login from "./pages/login";
-import Register from "./pages/register";
+// import Register from "./pages/register";
 
 
 export const router = createBrowserRouter([
@@ -15,8 +15,8 @@ export const router = createBrowserRouter([
         path: "login",
         element: <Login />,
     },
-    {
+    /*{
         path: "register",
         element: <Register />
-    }
+    }*/
 ]);
