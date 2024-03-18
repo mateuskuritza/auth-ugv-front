@@ -28,7 +28,8 @@ function Login() {
     return (
         <div className='w-full h-screen flex flex-row'>
             <div className='flex-col w-full h-full bg-gray-300 items-center justify-center hidden lg:flex'>
-                <img src="/logo-eric" alt="LOGO DO ERIC" />
+                <img src=".\public\eric.png" height={450} width={450} alt="LOGO DO ERIC" />
+
                 <div className='w-3/4 text-center mt-4'>
                     Kuritza, Mateus: Sistema desenvolvido da forma mais simples possível para realizarmos as atividades das aulas e obtermos as notas
                 </div>
